@@ -4,6 +4,7 @@ from .serializers import MenuSerializer, BookingSerializer, User, UserSerializer
 from rest_framework import generics , viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from .pagination import Menupagination
 # Create your views here.
 
 
@@ -12,11 +13,14 @@ class UserViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializers
     permission_classes = [IsAuthenticated]
+    pagination_class = Menupagination
 
 class MenuItemView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
+    pagination_class = Menupagination
+
 
 
 class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
@@ -29,6 +33,8 @@ class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = Menupagination
+
 
 
 @api_view()
