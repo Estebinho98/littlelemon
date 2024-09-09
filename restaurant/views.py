@@ -5,6 +5,7 @@ from rest_framework import generics , viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .pagination import Menupagination
+from django.shortcuts import render
 # Create your views here.
 
 
@@ -34,6 +35,9 @@ class BookingViewSet(viewsets.ModelViewSet):
     serializer_class = BookingSerializer
     permission_classes = [IsAuthenticated]
     pagination_class = Menupagination
+
+def index(request):
+    return render(request, 'index.html', {})
 
 
 
